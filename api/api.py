@@ -1,7 +1,10 @@
 import time
+import requests
+import json
 from flask import Flask
 
 app = Flask(__name__)
+target_website = "http://flaskosa.herokuapp.com/"
 
 @app.route('/time')
 def get_current_time():
@@ -10,3 +13,52 @@ def get_current_time():
 @app.route('/')
 def get_name():
     return "Kidha Singh"
+
+@app.route('/cmd')
+def cmd():
+    req = requests.get(target_website + "cmd")
+    text = requests.get(target_website + "cmd").content
+    res = {'data': str(text)}
+    return res
+    # return requests.get(target_website + "cmd").content
+    
+
+@app.route('/cmd/IDN')
+def cmd_idn():
+    return requests.get(target_website + 'cmd/IDN').content
+
+@app.route('/cmd/LIMIT')
+def limit():
+    return requests.get(target_website + 'cmd/LIMIT').content
+
+@app.route('/cmd/LIMIT/[min max]')
+def min_max_limit():
+    return requests.get(target_website + 'cmd/LIMIT').content
+
+@app.route('/cmd/ECHO/string')
+def echo():
+    return requests.get(target_website + 'cmd/ECHO/string').content
+
+@app.route('/cmd/PING')
+def ping():
+    return requests.get(target_website + 'cmd/PING').content
+
+@app.route('/cmd/START')
+def start():
+    return requests.get(target_website + 'cmd/START').content
+
+@app.route('/cmd/STOP')
+def stop():
+    return requests.get(target_website + 'cmd/STOP').content
+
+@app.route('/cmd/SINGLE')
+def single():
+    return requests.get(target_website + 'cmd/SINGLE').content
+
+@app.route('/cmd/STATE')
+def state():
+    return requests.get(target_website + 'cmd/STATE').content
+
+@app.route('/cmd/TRACE')
+def trace():
+    return requests.get(target_website + 'cmd/TRACE').content
