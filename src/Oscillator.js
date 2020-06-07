@@ -1042,10 +1042,13 @@ class Oscillator extends Component {
         this.updateDataPoints = this.updateDataPoints.bind(this);
         this.clearChart = this.clearChart.bind(this);
         this.reset = this.reset.bind(this);
+
+        this.canvasRef = React.createRef();
     }
 
     componentDidMount() {
-        // setInterval(this.updateDataPoints, updateInterval);
+        setInterval(this.updateDataPoints, updateInterval);
+
     }
 
     clearChart() {
@@ -1091,54 +1094,25 @@ class Oscillator extends Component {
 
     render() {
 
-        // let dps = getDataPoints();
-        // dps = dps.slice(0, screenPoints);
-
-        // let options = {
-        //     backgroundColor: "black",
-        //     zoomEnabled: true,
-        //     animationEnabled: false,
-        //     axisY: {
-        //         includeZero: false,
-        //         gridThickness: 0,
-        //     },
-        //     data: [{
-        //         type: "line",
-        //         color: "green",
-        //         dataPoints: this.state.active ? dps : []
-        //     }]
-        // }
-
-        // let options = {};
+        let dps = getDataPoints();
+        dps = dps.slice(0, screenPoints);
 
         let options = {
-            animationEnabled: true,
-            theme: "light2",
-            title:{
-                text: "Simple Line Chart"
+            backgroundColor: "black",
+            zoomEnabled: true,
+            height: 225,
+            width: 290,
+            animationEnabled: false,
+            axisY: {
+                includeZero: false,
+                gridThickness: 0,
             },
-            axisY:{
-                includeZero: false
-            },
-            data: [{        
+            data: [{
                 type: "line",
-                  indexLabelFontSize: 16,
-                dataPoints: [
-                    { y: 450 },
-                    { y: 414},
-                    { y: 520, indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" },
-                    { y: 460 },
-                    { y: 450 },
-                    { y: 500 },
-                    { y: 480 },
-                    { y: 480 },
-                    { y: 410 , indexLabel: "\u2193 lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
-                    { y: 500 },
-                    { y: 480 },
-                    { y: 510 }
-                ]
+                color: "green",
+                dataPoints: this.state.active ? dps : []
             }]
-        };
+        }
 
         return (
 
@@ -1148,10 +1122,11 @@ class Oscillator extends Component {
                     <h1 className="my_text_center">Custom Oscillator</h1>
                     <div className="base">
                         <img src={OscillatorImg} className="img-fluid"></img>
-                        {/* <div className="overlapping_div" id="chartContainer">Place Canvas in Here...</div> */}
-                        <CanvasJSChart options={options}
-                            onRef={ref => this.chart = ref}
-                        />
+                        <div className="overlapping_div" id="chartContainer">
+                            <CanvasJSChart options={options} className = "overlapping_div"
+                                onRef={ref => this.chart = ref}
+                            />
+                        </div>
                         <a href="#" className="my_btn">
                             <i className="fa fa-play-circle my_btn_start"></i>
                         </a>
@@ -1163,14 +1138,10 @@ class Oscillator extends Component {
                         </a>
                     </div>
                 </div>
-
-                {/* <CanvasJSChart options={options}
-                    onRef={ref => this.chart = ref}
-                /> */}
-                <Button variant="success" size="lg" onClick={() => !this.state.active && this.toggleState()} >Start</Button>{' '}
+                {/* <Button variant="success" size="lg" onClick={() => !this.state.active && this.toggleState()} >Start</Button>{' '}
                 <Button variant="danger" size="lg" onClick={() => this.state.active && this.toggleState()} >Stop</Button>{' '}
                 <Button variant="danger" size="lg" onClick={() => this.state.active && this.reset()} >Reset</Button>{' '}
-                <Button variant="warning" size="lg">Single</Button>{' '}
+                <Button variant="warning" size="lg">Single</Button>{' '} */}
             </div>
         );
     }
