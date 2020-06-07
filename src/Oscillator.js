@@ -1042,13 +1042,14 @@ class Oscillator extends Component {
         this.updateDataPoints = this.updateDataPoints.bind(this);
         this.clearChart = this.clearChart.bind(this);
         this.reset = this.reset.bind(this);
-
-        this.canvasRef = React.createRef();
+        this.onStartClick = this.onStartClick.bind(this);
+        this.onStopClick = this.onStopClick.bind(this);
+        this.onSingleClick = this.onSingleClick.bind(this);
+        this.getTrace = this.getTrace.bind(this);
     }
 
     componentDidMount() {
         setInterval(this.updateDataPoints, updateInterval);
-
     }
 
     clearChart() {
@@ -1058,6 +1059,7 @@ class Oscillator extends Component {
     }
 
     updateDataPoints() {
+        return;
         if (!this.state.active) {
             this.clearChart();
             return;
@@ -1090,6 +1092,22 @@ class Oscillator extends Component {
         this.toggleState();
         this.clearChart();
         clearInterval(updateIntervalNum);
+    }
+
+    onStartClick() {
+        fetch('/cmd/TRACE').then(res => res.json()).then((d) => console.log(d))
+    }
+
+    onStopClick() {
+        fetch('/cmd/TRACE').then(res => res.json()).then((d) => console.log(d))
+    }
+
+    getTrace() {
+        fetch('/cmd/TRACE').then(res => res.json()).then((d) => console.log(d))
+    }
+
+    onSingleClick() {
+        fetch('/cmd/TRACE').then(res => res.json()).then((d) => console.log(d))
     }
 
     render() {
@@ -1127,7 +1145,7 @@ class Oscillator extends Component {
                                 onRef={ref => this.chart = ref}
                             />
                         </div>
-                        <a href="#" className="my_btn">
+                        <a href="#" className="my_btn" onClick = {this.onStartClick}>
                             <i className="fa fa-play-circle my_btn_start"></i>
                         </a>
                         <a href="#" className="my_btn">
