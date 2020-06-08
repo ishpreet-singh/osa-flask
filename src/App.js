@@ -3,13 +3,11 @@ import CanvasJSReact from './lib/canvasjs.react';
 import Button from 'react-bootstrap/Button';
 import OscillatorImg from './oscillator-img.png';
 import './App.css';
+import $ from "jquery"
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var updateInterval = 1000;
-var dataPoints = [];
-var screenPoints = 80;
-var sliceCount = 0;
 var updateIntervalNum;
 
 class App extends Component {
@@ -21,7 +19,9 @@ class App extends Component {
             start: 0,
             stop: 0,
             xArr: [],
-            yArr: []
+            yArr: [],
+            height: 320,
+            width: 420
         }
         this.toggleState = this.toggleState.bind(this);
         this.updateDataPoints = this.updateDataPoints.bind(this);
@@ -36,6 +36,7 @@ class App extends Component {
 
     componentDidMount() {
         // updateIntervalNum = setInterval(this.updateDataPoints, updateInterval);
+        window.onresize = this.render;
     }
 
     clearChart() {
@@ -125,13 +126,14 @@ class App extends Component {
 
     render() {
 
-        const doc = document.getElementById("chartContainer");
+        let img = $("#osc-img");
+        // width: img.width() * 0.48,
 
         let options = {
             backgroundColor: "black",
             zoomEnabled: true,
-            height: 400,
-            width: 520,
+            height: img.height() * 0.7,
+            width: img.width() * 0.48,
             animationEnabled: false,
             axisX: {
                 labelFontColor: "green"
@@ -155,9 +157,9 @@ class App extends Component {
                 <div className="container">
                     <h1 className="my_text_center">Cloud Optical Spectrum Analyzer</h1>
                     <div className="base">
-                        <img src={OscillatorImg} className="img-fluid"></img>
+                        <img src={OscillatorImg} className="img-fluid" id="osc-img"></img>
                         <div className="overlapping_div" id="chartContainer">
-                            <CanvasJSChart options={options} className="overlapping_div"
+                            <CanvasJSChart id="canvas" options={options} className="overlapping_div"
                                 onRef={ref => this.chart = ref}
                             />
                         </div>
