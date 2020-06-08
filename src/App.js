@@ -175,7 +175,18 @@ class App extends Component {
                             <i className="fa fa-pause-circle my_btn_single" title="Single"></i>
                         </a>
                     </div>
+
+                    <div className = "footer">
+                        <p>
+                            Made By  
+                            <a href="https://github.com/ishpreet-singh"> Ishpreet Singh</a>. 
+                            Checkout the       
+                            <a href="https://github.com/ishpreet-singh/osa-flask"> full code</a>.
+                        </p>
+                    </div>
+
                 </div>
+
             </div>
         );
     }

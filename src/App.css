@@ -10,6 +10,13 @@
   width: 100%;
 }
 
+.footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 62%;
+  font-size: 20px;
+}
+
 .img-fluid {
   width: 75%;
 }
