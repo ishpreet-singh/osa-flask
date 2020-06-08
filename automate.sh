@@ -1,1 +1,1 @@
-cd api && rm -rf templates && mkdir templates && cd .. && npm run build && cp -R build/* api/templates/ && cp -R build/static api/ && cd api && venv/bin/activate && flask run --no-debugger
+cd api && rm -rf templates && mkdir templates && cd .. && npm run build && cp -R build/* api/templates/ && cp -R build/static api/
