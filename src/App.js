@@ -159,18 +159,18 @@ class App extends Component {
                     <div className="base">
                         <img src={OscillatorImg} className="img-fluid" id="osc-img"></img>
                         <div className="overlapping_div" id="chartContainer">
-                            <CanvasJSChart id="canvas" options={options} className="overlapping_div"
+                            <CanvasJSChart id="canvas" options={options} className="canvas-child"
                                 onRef={ref => this.chart = ref}
                             />
                         </div>
                         <a href="#" className="my_btn" onClick={this.onStartClick}>
-                            <i className="fa fa-play-circle my_btn_start" title="Start"></i>
+                            <i className="fa fa-play-circle-o my_btn_start" title="Start"></i>
                         </a>
                         <a href="#" className="my_btn" onClick={this.onStopClick}>
-                            <i className="fa fa-stop-circle my_btn_stop" title="Stop"></i>
+                            <i className="fa fa-stop-circle-o my_btn_stop" title="Stop"></i>
                         </a>
                         <a href="#" className="my_btn" onClick={this.onSingleClick}>
-                            <i className="fa fa-pause-circle my_btn_single" title="Single"></i>
+                            <i className="fa fa-pause-circle-o my_btn_single" title="Single"></i>
                         </a>
                     </div>
 
