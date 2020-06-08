@@ -35,8 +35,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        // const doc = document.getElementById("chartContainer");
-        // console.log(doc.height);
         // updateIntervalNum = setInterval(this.updateDataPoints, updateInterval);
     }
 
@@ -48,12 +46,10 @@ class App extends Component {
 
     updateDataPoints() {
         if(!this.state.active)  return;
-        console.log("I am called");
         fetch('/cmd/TRACE').then(res => res.json()).then((d) => {
             try {
                 if(!this.state.active)  return;
                 let text = d.data;
-                // text = text.slice(2);
                 text = text.slice(2, text.length - 1);
                 let data = JSON.parse(text);
                 let num = Math.random() * (100 - 50) + 50;
@@ -110,7 +106,7 @@ class App extends Component {
     }
 
     getTrace() {
-        fetch('/cmd/TRACE').then(res => res.json()).then((d) => console.log(d))
+        // fetch('/cmd/TRACE').then(res => res.json()).then((d) => console.log(d))
     }
 
     onSingleClick() {
@@ -124,7 +120,7 @@ class App extends Component {
         } catch {
             this.reset();
         }
-        fetch('/cmd/SINGLE').then(res => res.json()).then((d) => console.log(d))
+        // fetch('/cmd/SINGLE').then(res => res.json()).then((d) => console.log(d))
     }
 
     render() {
