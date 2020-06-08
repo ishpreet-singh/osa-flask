@@ -2,8 +2,11 @@ import time
 import requests
 import json
 from flask import Flask
+import os
+from flask import render_template
 
-app = Flask(__name__)
+# app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 target_website = "http://flaskosa.herokuapp.com/"
 
 @app.route('/time')
@@ -12,7 +15,12 @@ def get_current_time():
 
 @app.route('/')
 def get_name():
-    return "Kidha Singh"
+    file_path = os.path.join('build', 'index.html')
+    print("-----------------------")
+    print(file_path)
+    print("-----------------------")
+    return render_template('index.html')
+    # return app.send_static_file(file_path)
 
 @app.route('/cmd')
 def cmd():

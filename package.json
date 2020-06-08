@@ -12,8 +12,9 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start-api": "cd api && venv/bin/activate && flask run --no-debugger",
+    "start": "bash automate.sh",
+    "start-api": "npm run build && cp -R build api/templates/ && cp -R build/static/ api/ && cd api && venv/bin/activate && flask run --no-debugger",
+    "react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
