@@ -24,7 +24,7 @@ cd osa-flask
 ```
 
 
-3. Make sure you have npm and yarn installed:
+3. Make sure you have [npm](https://www.npmjs.com/get-npm) and [yarn](https://classic.yarnpkg.com/en/docs/install/#mac-stable) installed:
 
 ```
 npm i yarn

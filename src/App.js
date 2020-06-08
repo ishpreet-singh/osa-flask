@@ -3,6 +3,7 @@ import CanvasJSReact from './lib/canvasjs.react';
 import Button from 'react-bootstrap/Button';
 import OscillatorImg from './oscillator-img.png';
 import './App.css';
+import $ from "jquery"
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -124,6 +125,8 @@ class App extends Component {
     }
 
     render() {
+
+        let img = $("#osc-img");
 
         let options = {
             backgroundColor: "black",
