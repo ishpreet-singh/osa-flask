@@ -1,1 +1,0 @@
-cd api && rm -rf templates && mkdir templates && cd .. && npm run automate && cp -R build/* api/templates/ && cp -R build/static api/
