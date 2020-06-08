@@ -35,7 +35,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        // setInterval(this.onStartClick, updateInterval);
+        // const doc = document.getElementById("chartContainer");
+        // console.log(doc.height);
+        // updateIntervalNum = setInterval(this.updateDataPoints, updateInterval);
     }
 
     clearChart() {
@@ -45,28 +47,28 @@ class App extends Component {
     }
 
     updateDataPoints() {
-        return;
-        if (!this.state.active) {
-            this.clearChart();
-            return;
-        }
-        let arr = [];
-        let dps = this.chart.options.data[0].dataPoints.slice();
-        if (dataPoints.length <= screenPoints) return;
-
-        let shiftSize = Math.floor(screenPoints / 2);
-        shiftSize = 40;
-        arr = dps.slice(shiftSize);
-        if (sliceCount == 0) {
-            dataPoints = dataPoints.slice(shiftSize)
-        }
-        dataPoints = dataPoints.slice(shiftSize)
-        arr = arr.concat(dataPoints.slice(0, shiftSize))
-        sliceCount++;
-
-        let options = this.chart.options;
-        options.data[0].dataPoints = arr;
-        this.chart.render();
+        if(!this.state.active)  return;
+        console.log("I am called");
+        fetch('/cmd/TRACE').then(res => res.json()).then((d) => {
+            try {
+                if(!this.state.active)  return;
+                let text = d.data;
+                // text = text.slice(2);
+                text = text.slice(2, text.length - 1);
+                let data = JSON.parse(text);
+                let num = Math.random() * (100 - 50) + 50;
+                this.state.xArr = data.xdata.slice(num);
+                this.state.yArr = data.ydata.slice(num);
+                // this.state.xArr = data.xdata.slice();
+                // this.state.yArr = data.ydata.slice();
+                this.state.active = true;
+                this.renderChart();
+            } catch {
+                this.reset();
+            }
+        }, () => {
+            this.reset();
+        });
     }
 
     toggleState() {
@@ -94,32 +96,17 @@ class App extends Component {
     }
 
     onStartClick() {
-        fetch('/cmd/TRACE').then(res => res.json()).then((d) => {
-            try {
-                let text = d.data;
-                // text = text.slice(2);
-                text = text.slice(2, text.length - 1);
-                let data = JSON.parse(text);
-                let num = Math.random() * (200 - 50) + 50;
-                this.state.xArr = data.xdata.slice(num);
-                this.state.yArr = data.ydata.slice(num);
-                // this.state.xArr = data.xdata.slice();
-                // this.state.yArr = data.ydata.slice();
-                this.state.active = true;
-                this.renderChart();
-            } catch {
-                this.reset();
-            }
-        }, () => {
-            this.reset();
-        });
+        this.state.active = true;
+        updateIntervalNum = setInterval(this.updateDataPoints, updateInterval);
+        this.updateDataPoints();
     }
 
     onStopClick() {
-        fetch('/cmd/STOP').then(res => res.json()).then((d) => {
-            console.log("Stop Clicked");
-            this.reset();
-        });
+        this.reset();
+        // fetch('/cmd/STOP').then(res => res.json()).then((d) => {
+        //     console.log("Stop Clicked");
+        //     this.reset();
+        // });
     }
 
     getTrace() {
@@ -127,20 +114,36 @@ class App extends Component {
     }
 
     onSingleClick() {
+        try {
+            let num = 20;
+            this.state.xArr = this.state.xArr.slice(num);
+            this.state.yArr = this.state.yArr.slice(num);
+            this.state.active = true;
+            clearInterval(updateIntervalNum);
+            this.renderChart();
+        } catch {
+            this.reset();
+        }
         fetch('/cmd/SINGLE').then(res => res.json()).then((d) => console.log(d))
     }
 
     render() {
 
+        const doc = document.getElementById("chartContainer");
+
         let options = {
             backgroundColor: "black",
             zoomEnabled: true,
-            height: 225,
-            width: 290,
+            height: 400,
+            width: 520,
             animationEnabled: false,
+            axisX: {
+                labelFontColor: "green"
+            },
             axisY: {
                 includeZero: false,
                 gridThickness: 0,
+                labelFontColor: "green"
             },
             data: [{
                 type: "line",
@@ -163,20 +166,16 @@ class App extends Component {
                             />
                         </div>
                         <a href="#" className="my_btn" onClick={this.onStartClick}>
-                            <i className="fa fa-play-circle my_btn_start"></i>
+                            <i className="fa fa-play-circle my_btn_start" title="Start"></i>
                         </a>
                         <a href="#" className="my_btn" onClick={this.onStopClick}>
-                            <i className="fa fa-stop-circle my_btn_stop"></i>
+                            <i className="fa fa-stop-circle my_btn_stop" title="Stop"></i>
                         </a>
                         <a href="#" className="my_btn" onClick={this.onSingleClick}>
-                            <i className="fa fa-pause-circle my_btn_single"></i>
+                            <i className="fa fa-pause-circle my_btn_single" title="Single"></i>
                         </a>
                     </div>
                 </div>
-                {/* <Button variant="success" size="lg" onClick={() => !this.state.active && this.toggleState()} >Start</Button>{' '}
-                <Button variant="danger" size="lg" onClick={() => this.state.active && this.toggleState()} >Stop</Button>{' '}
-                <Button variant="danger" size="lg" onClick={() => this.state.active && this.reset()} >Reset</Button>{' '}
-                <Button variant="warning" size="lg">Single</Button>{' '} */}
             </div>
         );
     }

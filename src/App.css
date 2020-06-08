@@ -1,10 +1,17 @@
 .my_text_center {
   text-align: center;
+  margin-top: 4%;
+  color: rgb(94, 194, 36);
 }
 
 .base {
   position: absolute;
-  margin-top: 20px;
+  margin-top: 5%;
+  width: 100%;
+}
+
+.img-fluid {
+  width: 75%;
 }
 
 .overlapping_div {
@@ -12,23 +19,23 @@
   background-color: black;
   border-radius: 2%;
   top: 11%;
-  left: 6.8%;
+  left: 5%;
   color: white;
-  width: 48.4%;
+  width: 36.6%;
   height: 71%;
 }
 
 .my_btn .fa {
   /*Button itself*/
   position: absolute;
-  width: 65px;
-  height: 65px;
-  padding-left: 11px;
-  padding-top: 9px;
+  width: 80px;
+  height: 80px;
+  padding-left: 12px;
+  padding-top: 10px;
   vertical-align: middle;
   border-radius: 50%;
-  font-size: 40px;
-  background-image: -webkit-linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
+  font-size: 54px;
+  background-image: -webkit-linear-gradient(#e8e8e8 0%, #2ed429 100%);
   background-image: linear-gradient(#e8e8e8 0%, #d6d6d6 100%);
   text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
   box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5), 0 2px 2px rgba(0, 0, 0, 0.19);
@@ -44,16 +51,16 @@
 }
 
 .my_btn_start {
-  left: 59%;
-  top: 65%;
+  left: 45%;
+  top: 67.8%;
 }
 
 .my_btn_stop {
-  left: 71.5%;
-  top: 65%;
+  left: 54%;
+  top: 67.8%;
 }
 
 .my_btn_single {
-  left: 84%;
-  top: 65%;
+  left: 63%;
+  top: 67.8%;
 }
