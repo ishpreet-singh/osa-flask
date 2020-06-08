@@ -68,3 +68,14 @@ yarn start-api
 |    https://flask-osa.herokuapp.com/cmd/SINGLE   |     starts a single scan (blocking operation, single scan takes few seconds)    |
 |    https://flask-osa.herokuapp.com/cmd/STATE    |                             returns instrument state                            |
 |    https://flask-osa.herokuapp.com/cmd/TRACE    |                         returns OSA trace in json format                        |
+
+
+# Features
+
+* START button initiates continuous (repetitive) acquisition with ~1Hz refresh rate
+* STOP button stops acquisition
+* SINGLE button retrieves a single trace from the virtual OSA
+* TRACE are displaced within specified scan limits
+* Users can send queries and access apis via REST
+* Graphs can be zoomed, panned, read data values off the plot.
+* The app is deployed on Heroku.
