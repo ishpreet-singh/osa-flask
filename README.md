@@ -45,13 +45,34 @@ yarn start
 ```
 
 
-6. Start the Flask Server:
+6. Move to Flask directory:
+
+```
+cd api
+```
+
+
+7. Create a virtual environment, Install the virtual environment if its not installed:
+
+```
+python3 -m venv venv
+```
+
+
+8. Install the requirements:
+
+```
+pip3 install -r requirements.txt
+```
+
+
+9.  Start the Flask Server:
 
 ```
 yarn start-api
 ```
 
-7. Head to `http://localhost:3000/` to see the result.
+10. Head to `http://localhost:3000/` to see the result.
 
 
 # APIS
