@@ -59,20 +59,27 @@ python3 -m venv venv
 ```
 
 
-8. Install the requirements:
+8. Activate the environment:
+
+```
+source venv/bin/activate
+```
+
+
+9.  Install the requirements:
 
 ```
 pip3 install -r requirements.txt
 ```
 
 
-9.  Start the Flask Server:
+10.  Start the Flask Server:
 
 ```
-yarn start-api
+flask run --no-debugger
 ```
 
-10. Head to `http://localhost:3000/` to see the result.
+11. Head to `http://localhost:3000/` to see the result.
 
 
 # APIS
